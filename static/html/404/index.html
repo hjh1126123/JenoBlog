@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no,
+ initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>404</title>
+  <link rel="stylesheet" href="../../css/reset.css?v1.0">
+  <script src="../../lib/flexible.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .content {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562997593197&di=18a37a7f921e74ee9a179541af3b451e&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201706%2F01%2F164148rvzrohewl8cmvjc4.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .mask {
+      position: absolute;
+      background-color: rgba(0, 0, 0, .7);
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      padding: 6rem 0 0 0;
+    }
+
+    .mask .divider {
+      width: 50%;
+      margin: .5rem auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .mask .short {
+      width: 15%;
+    }
+
+    .mask .flex-row {
+
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .mask .mt-3 {
+      margin-top: 3rem;
+    }
+
+    .mask .text-center {
+      text-align: center;
+    }
+
+    .mask .head {
+      text-align: center;
+      width: 12rem;
+    }
+
+    .mask .head img {
+      border: 3px solid #fff;
+      border-radius: 100%;
+      width: 100%;
+      height: auto;
+    }
+
+    .mask .text-white {
+      color: #fff;
+    }
+
+    .mask .button {
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid #fff;
+      padding: .8rem;
+      border-radius: 20px;
+      font-size: 1rem;
+
+      transition: all .3s;
+    }
+
+    .mask .button:hover {
+      background-color: #fafafa;
+      color: #111;
+    }
+
+    @media screen and (max-width: 960px) {
+      h1 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: .4rem;
+      }
+
+      .content {
+        background-position: center;
+      }
+
+      .mask {
+        padding: 1.6rem 0 0 0;
+      }
+
+      .mask .mt-3 {
+        margin-top: .3rem;
+      }
+
+      .mask .head {
+        width: 4rem;
+      }
+
+      .mask .button {
+        padding: .2rem;
+        font-size: .4rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="mask">
+      <div class="flex-row">
+        <div class="head">
+          <img src="./head.jpg">
+        </div>
+      </div>
+      <div class="flex-row text-white">
+        <h1>...404了呢</h1>
+      </div>
+      <div class="divider"></div>
+      <div class="text-center text-white">
+        <p>页面还在构建</p>
+        <p>请晚点再来吧</p>
+        <p>真是抱歉</p>
+      </div>
+      <div class="divider short"></div>
+      <div class="text-center text-white mt-3">
+        <p>你可以访问点别的东西</p>
+      </div>
+      <div class="flex-row mt-3">
+        <a class="button text-white" href="https://github.com/hjh1126123?tab=repositories" target="_blank">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  </script>
+</body>
+
+</html>

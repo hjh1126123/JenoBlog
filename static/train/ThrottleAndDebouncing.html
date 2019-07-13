@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防抖和节流</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    pre {
+      margin: 0;
+      padding: 0;
+    }
+
+    .content {
+      height: 200px;
+      width: 100%;
+      background: #ccc;
+    }
+
+    .center {
+      width: 100%;
+
+      text-align: center;
+
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+
+      color: #fff;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h5>防抖：所谓防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间</h5>
+  <h5>未做防抖处理</h5>
+  <div id="no-debounce" class="content">
+    <div class="center">
+      <h1 id="no-debounce-text"></h1>
+    </div>
+  </div>
+  <h5>做了防抖处理 —— 结束运动执行</h5>
+  <h6>核心代码</h6>
+  <pre>
+      <code class="JavaScript">
+        function debounceMoveLast(func, wait) {
+          var timeout;
+          return function () {
+            var context = this;
+            var args = arguments;
+      
+            if (timeout) clearTimeout(timeout);
+      
+            timeout = setTimeout(function () {
+              func.apply(context, args);
+            }, wait);
+          }
+        }
+        </code>
+  </pre>
+  <h6>效果展示</h6>
+  <div id="debounce-last-fn" class="content">
+    <div class="center">
+      <h1 id="debounce-last-text"></h1>
+    </div>
+  </div>
+  <h5>做了防抖处理 —— 立即执行</h5>
+  <h6>核心代码</h6>
+  <pre>
+      <code class="JavaScript">
+          function debounceMoveFirst(func, wait) {
+            var timeout;
+            return function () {
+              var context = this;
+              var args = arguments;
+      
+              if (timeout) clearTimeout(timeout);
+      
+              var call = !timeout;
+              timeout = setTimeout(function () {
+                timeout = null;
+              }, wait);
+      
+              if (call) func.apply(context, args);
+            }
+          }
+        </code>
+  </pre>
+  <h6>效果展示</h6>
+  <div id="debounce-first-fn" class="content">
+    <div class="center">
+      <h1 id="debounce-first-text"></h1>
+    </div>
+  </div>
+  <script>
+    // 动作结束执行
+    function debounceMoveLast(func, wait) {
+      var timeout;
+      return function () {
+        var context = this;
+        var args = arguments;
+
+        if (timeout) clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
+          func.apply(context, args);
+        }, wait);
+      }
+    }
+
+    // 立即执行
+    function debounceMoveFirst(func, wait) {
+      var timeout;
+      return function () {
+        var context = this;
+        var args = arguments;
+
+        if (timeout) clearTimeout(timeout);
+
+        var call = !timeout;
+        timeout = setTimeout(function () {
+          timeout = null;
+        }, wait);
+
+        if (call) func.apply(context, args);
+      }
+    }
+
+    window.onload = function () {
+      // 无防抖      
+      var noDebounce = document.getElementById('no-debounce');
+      var noDebounceText = document.getElementById('no-debounce-text');
+      var noDebounceCount = 0;
+      noDebounce.addEventListener('mousemove', function () {
+        noDebounceText.innerText = noDebounceCount;
+        noDebounceCount++;
+      });
+
+      // 有防抖 后面执行
+      var debounce = document.getElementById('debounce-last-fn');
+      var debounceText = document.getElementById('debounce-last-text');
+      var debounceCount = 0;
+
+      debounce.addEventListener('mousemove', debounceMoveLast(function () {
+        debounceText.innerHTML = debounceCount;
+        debounceCount++;
+      }, 200));
+
+      // 无防抖 先执行
+      var debounceFirst = document.getElementById('debounce-first-fn');
+      var debounceFirstText = document.getElementById('debounce-first-text');
+      var debounceFirstCount = 0;
+
+      debounceFirst.addEventListener('mousemove', debounceMoveFirst(function () {
+        debounceFirstText.innerHTML = debounceFirstCount;
+        debounceFirstCount++;
+      }, 200))
+    }
+
+  </script>
+</body>
+
+</html>
