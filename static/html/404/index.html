@@ -45,7 +45,6 @@
     }
 
     .mask .flex-row {
-
       width: 100%;
       display: flex;
       justify-content: center;
@@ -55,8 +54,56 @@
       margin-top: 3rem;
     }
 
+    .mask .mt-2 {
+      margin-top: 2rem;
+    }
+
     .mask .text-center {
       text-align: center;
+    }
+
+    .mask .left {
+      left: 2rem;
+    }
+
+    .mask .right {
+      right: 2rem;
+    }
+
+    .mask .info {
+      position: absolute;
+
+      padding: 1rem;
+
+      height: 350px;
+      top: 0;
+      bottom: 0;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      color: #fff;
+
+      border: 1px solid #fff;
+
+      text-align: center;
+    }
+
+    .mask .info ul {
+      width: 15rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      list-style: none;
+      height: 3rem
+    }
+
+    .mask .info ul li:nth-child(1) {
+      float: left;
+      clear: left;
+    }
+
+    .mask .info ul li:nth-child(2) {
+      float: right;
+      clear: right;
     }
 
     .mask .head {
@@ -108,8 +155,20 @@
         padding: 1.6rem 0 0 0;
       }
 
+      .mask .left {
+        display: none;
+      }
+
+      .mask .right {
+        display: none;
+      }
+
       .mask .mt-3 {
         margin-top: .3rem;
+      }
+
+      .mask .mt-2 {
+        margin-top: .2rem;
       }
 
       .mask .head {
@@ -128,6 +187,46 @@
 <body>
   <div class="content">
     <div class="mask">
+      <div class="info left">
+        <p>项目部署</p>
+        <div class="divider"></div>
+        <ul class="mt-2">
+          <li>服务器</li>
+          <li>centOS</li>
+        </ul>
+        <ul>
+          <li>数据库</li>
+          <li>mysql</li>
+        </ul>
+        <ul>
+          <li>web服务器</li>
+          <li>nginx</li>
+        </ul>
+        <ul>
+          <li>进程管理工具</li>
+          <li>pm2</li>
+        </ul>        
+      </div>
+      <div class="info right">
+        <p>技术栈</p>
+        <div class="divider"></div>
+        <ul class="mt-2">
+          <li>前端依赖</li>
+          <li>vue,webpack</li>
+        </ul>
+        <ul>
+          <li>前端Web框架</li>
+          <li>koa</li>
+        </ul>
+        <ul>
+          <li>后端依赖</li>
+          <li>.net core</li>
+        </ul>
+        <ul>
+          <li>后端Orm框架</li>
+          <li>EF6</li>
+        </ul>
+      </div>
       <div class="flex-row">
         <div class="head">
           <img src="./head.jpg">
@@ -138,7 +237,7 @@
       </div>
       <div class="divider"></div>
       <div class="text-center text-white">
-        <p>页面还在构建</p>
+        <p>页面还在构建，PC端可以看到项目部署方式和部分使用技术</p>
         <p>请晚点再来吧</p>
         <p>真是抱歉</p>
       </div>
