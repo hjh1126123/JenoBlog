@@ -24,17 +24,21 @@
             </el-col>
           </el-row>
         </div>
-        <nuxt />
+        <nuxt class="form" />
         <div class="spilit">
-          <h6>第三方登录</h6>
+          <h6>第三方</h6>
         </div>
-        <div class="footer">
-          <el-row type="flex">
-            <i class="iconfont iconqq"></i>
-            <i class="iconfont iconwchart"></i>
-            <i class="iconfont iconweibo"></i>
-          </el-row>
-        </div>
+        <el-row
+          class="footer"
+          type="flex"
+        >
+          <el-col>
+            <i class="iconfont iconiconfontqq"></i>
+          </el-col>
+          <el-col>
+            <i class="iconfont iconwechat"></i>
+          </el-col>
+        </el-row>
       </el-card>
     </el-col>
   </el-container>
@@ -44,7 +48,7 @@
 export default {
   data() {
     return {
-      routeName: 'account-signIn'
+      routeName: null
     }
   },
   computed: {
@@ -64,6 +68,9 @@ export default {
     '$route.name'(val) {
       this.routeName = val
     }
+  },
+  created() {
+    this.routeName = this.$route.name
   }
 }
 </script>
@@ -77,8 +84,8 @@ export default {
   width: 100%;
   height: 100%;
 
-  top: 0;
   left: 0;
+  bottom: 0;
 
   display: flex;
   align-items: center;
@@ -107,50 +114,23 @@ export default {
   cursor: pointer;
 }
 
-#account .content .card .spilit {
-  margin-top: 2rem;
+#account .content .card .form {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+#account .content .card .form > * {
   width: 100%;
-  text-align: center;
-}
-
-#account .content .card .spilit h6 {
-  position: relative;
-  margin: 0 0 10px;
-  font-size: 12px;
-  color: #b5b5b5;
-}
-
-#account .content .card .spilit h6::before {
-  content: '';
-  border-top: 1px solid #b5b5b5;
-  display: block;
-  position: absolute;
-  width: 30%;
-  top: 8px;
-  left: 0;
-}
-
-#account .content .card .spilit h6::after {
-  content: '';
-  border-top: 1px solid #b5b5b5;
-  display: block;
-  position: absolute;
-  width: 30%;
-  top: 8px;
-  right: 0;
+  margin-bottom: 1rem;
 }
 
 #account .content .card .footer {
   margin-top: 1rem;
   text-align: center;
-}
-
-#account .content .card .footer .el-col {
-  margin-top: 1rem;
-  text-align: center;
-
   padding-left: 1rem;
   padding-right: 1rem;
+
+  text-align: center;
 }
 
 #account .active {
@@ -163,7 +143,23 @@ export default {
   }
 
   #account .content .card .head {
-    padding: 4rem 0 2rem 0;
+    padding: 0.3rem 0 0.6rem 0;
+  }
+
+  #account .content .card .head .head-item {
+    padding: 0 1rem 0 1rem;
+  }
+
+  #account .content .card .head .head-item h2 {
+    font-size: 0.7rem;
+  }
+
+  #account .content .card .form > * {
+    margin-bottom: 0.3rem;
+  }
+
+  #account .content .card .footer {
+    margin-top: 0.3rem;
   }
 }
 </style>

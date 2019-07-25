@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    menuClick(){      
-      this.$emit('menuClick');
+    menuClick() {
+      this.$emit('menuClick')
     }
   }
 }
@@ -77,7 +77,7 @@ export default {
   text-align: center;
 }
 
-#h-header .tool-content .tool-item a {  
+#h-header .tool-content .tool-item a {
   font-weight: 500;
   font-size: 0.85em;
   margin: 0 1em;
@@ -95,15 +95,15 @@ export default {
   color: #409eff;
 }
 
-#h-header .tool-content .tool-menu {
-  font-size: 2rem;
-  margin-right: 1rem;
-}
-
 @media screen and (max-width: 960px) {
   #h-header {
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+  }
+
+  #h-header .tool-content .tool-menu {
+    font-size: .8rem;
+    margin-right: .8rem;
   }
 }
 </style>

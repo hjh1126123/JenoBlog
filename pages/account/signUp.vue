@@ -13,14 +13,20 @@
       show-password
     ></el-input>
     <el-input
-      v-model="password"
+      v-model="phone"
       placeholder="请输入手机号"
       prefix-icon="el-icon-mobile-phone"
     ></el-input>
+    <el-input
+      v-model="check"
+      placeholder="请输入手机验证码"
+      prefix-icon="el-icon-check"
+      maxlength="6"
+    ></el-input>
     <el-button
-      disabled
+      :disabled="!hasCheck"
       type="primary"
-      :click="login"
+      @click.native=""
     >注册</el-button>
   </div>
 </template>
@@ -31,22 +37,15 @@ export default {
   data() {
     return {
       userId: '',
-      password: ''
+      password: '',
+      phone :'',
+      check :''
+    }
+  },
+  computed: {
+    hasCheck(){
+      return this.check.length >= 6;
     }
   }
 }
 </script>
-
-<style>
-#sign-up {
-  padding-right: 1rem;
-  padding-left: 1rem;
-}
-
-#sign-up > * {
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-
-</style>

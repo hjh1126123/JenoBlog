@@ -34,6 +34,8 @@ export default {
   border-bottom: 1px solid #ccc;
 
   z-index: 100;
+
+  top: 0;
 }
 
 .container {
@@ -45,9 +47,13 @@ export default {
 }
 
 @media screen and (max-width: 960px) {
+  .header {
+    height : 1.5rem;
+  }
+
   .container {
     width: 100%;
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
 }
 </style>

@@ -1,0 +1,43 @@
+.spilit {
+  margin-top: 2rem;  
+  width: 100%;
+  text-align: center;
+}
+
+.spilit > * {
+  position: relative;
+  margin: 0 0 1rem;
+  font-size: 0.3rem;
+  color: #b5b5b5;
+}
+
+.spilit > *::before {
+  content: '';
+  left: 0;
+  width: 30%;
+  border-top: 1px solid #b5b5b5;
+  display: block;
+  position: absolute;
+  top: 0.4rem;
+}
+
+.spilit > *::after {
+  content: '';
+  right: 0;
+  width: 30%;
+  border-top: 1px solid #b5b5b5;
+  display: block;
+  position: absolute;
+  top: 0.4rem;
+}
+
+@media screen and (max-width: 960px) {
+  .spilit {
+    margin-top: .5rem;
+  }
+
+  .spilit > *::before,
+  .spilit > *::after {
+    top: 0.2rem;
+  }
+}

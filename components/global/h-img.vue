@@ -9,7 +9,6 @@
       v-lazy="src"
     >
   </div>
-
 </template>
 
 <script>

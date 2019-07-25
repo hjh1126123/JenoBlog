@@ -11,7 +11,7 @@ module.exports = {
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'
       },
       {
         hid: 'description',
@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_1198136_snkhen7e2q.css'
+        href: '//at.alicdn.com/t/font_1198136_ho5jjxuk4m.css'
       },
       {
         rel: 'stylesheet',
@@ -35,6 +35,15 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: '/css/animation.css'
+      },
+      {
+        rel: 'stylesheet',
+        href: '/css/tool.css'
+      }
+    ],
+    script: [
+      {
+        src: '/lib/layoutInit.js'
       }
     ]
   },

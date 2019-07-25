@@ -40,7 +40,9 @@
 
 <body>
   <h5>防抖：所谓防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间</h5>
-  <h5>未做防抖处理</h5>
+  <h5>节流：所谓节流，就是指连续触发事件但是在 n 秒中只执行一次函数。节流会稀释函数的执行频率</h5>
+  <h5>区别：防抖会刷新时间，节流不会</h5>
+  <h5>未做任何处理</h5>
   <div id="no-debounce" class="content">
     <div class="center">
       <h1 id="no-debounce-text"></h1>
@@ -99,37 +101,98 @@
       <h1 id="debounce-first-text"></h1>
     </div>
   </div>
+  <h5>做了节流处理</h5>
+  <h6>有时间戳版本和计时器版本，代码如下</h6>
+  <pre>
+    <code class="JavaScript">
+        function throttle(fn, wait, useTimeStamp) {
+          // 是否使用时间戳模式（时间戳模式不会发生延时多执行一次的情况）
+          if (useTimeStamp) {
+            // 设置初始时间为0
+            var previous = 0
+          } else {
+            // 设置计时器变量
+            var timeout;
+          }
+          return function () {
+            var context = this;
+            var args = arguments;
+            if (useTimeStamp) {
+              // 获取当前时间
+              var now = Date.now();
+
+              // 当前时间减去上次运行的时间要大于等待时间才执行
+              if (now - previous > wait) {
+                fn.apply(context, args);
+                previous = now;
+              }
+            } else {
+              // 无计时器的时候才执行
+              if (!timeout) {
+                timeout = setTimeout(() => {
+                  // 执行一次，将计时器清空，让其可以再次执行
+                  fn.apply(context, args);
+                  timeout = null;
+                }, wait);
+              }
+            }
+          }
+        }
+    </code>
+  </pre>
+  <h6>效果展示 （使用时间戳模式）</h6>
+  <div id="throttle" class="content">
+    <div class="center">
+      <h1 id="throttle-text"></h1>
+    </div>
+  </div>
   <script>
-    // 动作结束执行
-    function debounceMoveLast(func, wait) {
-      var timeout;
+    function throttle(fn, wait, useTimeStamp) {      
+      if (useTimeStamp) {
+        var previous = 0
+      } else {
+        var timeout;
+      }
       return function () {
         var context = this;
         var args = arguments;
+        if (useTimeStamp) {
+          var now = Date.now();
 
-        if (timeout) clearTimeout(timeout);
-
-        timeout = setTimeout(function () {
-          func.apply(context, args);
-        }, wait);
+          if (now - previous > wait) {
+            fn.apply(context, args);
+            previous = now;
+          }
+        } else {
+          if (!timeout) {
+            timeout = setTimeout(() => {
+              timeout = null;
+              fn.apply(context, args);
+            }, wait);
+          }
+        }
       }
     }
 
-    // 立即执行
-    function debounceMoveFirst(func, wait) {
+    function debounce(fn, wait, immediate) {
       var timeout;
+
       return function () {
-        var context = this;
-        var args = arguments;
+        let context = this;
+        let args = arguments;
 
         if (timeout) clearTimeout(timeout);
-
-        var call = !timeout;
-        timeout = setTimeout(function () {
-          timeout = null;
-        }, wait);
-
-        if (call) func.apply(context, args);
+        if (immediate) {
+          var callNow = !timeout;
+          timeout = setTimeout(function () {
+            timeout = null;
+          }, wait);
+          if (callNow) fn.apply(context, args);
+        } else {
+          timeout = setTimeout(function () {
+            fn.apply(context, args);
+          }, wait);
+        }
       }
     }
 
@@ -148,20 +211,27 @@
       var debounceText = document.getElementById('debounce-last-text');
       var debounceCount = 0;
 
-      debounce.addEventListener('mousemove', debounceMoveLast(function () {
+      debounce.addEventListener('mousemove', this.debounce(function () {
         debounceText.innerHTML = debounceCount;
         debounceCount++;
-      }, 200));
+      }, 200, false));
 
       // 无防抖 先执行
       var debounceFirst = document.getElementById('debounce-first-fn');
       var debounceFirstText = document.getElementById('debounce-first-text');
       var debounceFirstCount = 0;
 
-      debounceFirst.addEventListener('mousemove', debounceMoveFirst(function () {
+      debounceFirst.addEventListener('mousemove', this.debounce(function () {
         debounceFirstText.innerHTML = debounceFirstCount;
         debounceFirstCount++;
-      }, 200))
+      }, 200, true))
+
+      var throttle = document.getElementById('throttle');
+      var throttleText = document.getElementById('throttle-text');
+      var throttleCount = 0;
+      throttle.addEventListener('mousemove', this.throttle(function(){
+        throttleText.innerHTML = ++throttleCount;
+      }, 200, true));
     }
 
   </script>
